@@ -31,9 +31,9 @@ def db_eval_iou(annotation, segmentation, void_pixels=None):
 
     j = inters / union
     if j.ndim == 0:
-        j = 1 if np.isclose(union, 0) else j
+        j = np.NaN if np.isclose(union, 0) else j
     else:
-        j[np.isclose(union, 0)] = 1
+        j[np.isclose(union, 0)] = np.NaN
     return j
 
 
