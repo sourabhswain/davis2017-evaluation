@@ -40,8 +40,8 @@ else:
 
     # Generate dataframe for the general results
     g_measures = ['J&F-Mean', 'J-Mean', 'J-Recall', 'J-Decay', 'F-Mean', 'F-Recall', 'F-Decay']
-    final_mean = (np.mean(J["M"]) + np.mean(F["M"])) / 2.
-    g_res = np.array([final_mean, np.mean(J["M"]), np.mean(J["R"]), np.mean(J["D"]), np.mean(F["M"]), np.mean(F["R"]),
+    final_mean = (np.nanmean(J["M"]) + np.mean(F["M"])) / 2.
+    g_res = np.array([final_mean, np.nanmean(J["M"]), np.nanmean(J["R"]), np.nanmean(J["D"]), np.mean(F["M"]), np.mean(F["R"]),
                       np.mean(F["D"])])
     g_res = np.reshape(g_res, [1, len(g_res)])
     table_g = pd.DataFrame(data=g_res, columns=g_measures)
