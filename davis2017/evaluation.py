@@ -57,9 +57,9 @@ class DAVISEvaluation(object):
                 if 'F' in metric:
                     f_metrics_res[jj, ii, :] = db_eval_boundary(all_gt_masks[ii, ...], all_res_masks[jj, ...], all_void_masks)
         if 'J' in metric and 'F' in metric:
-            all_metrics = (np.mean(j_metrics_res, axis=2) + np.mean(f_metrics_res, axis=2)) / 2
+            all_metrics = (np.nanmean(j_metrics_res, axis=2) + np.mean(f_metrics_res, axis=2)) / 2
         else:
-            all_metrics = np.mean(j_metrics_res, axis=2) if 'J' in metric else np.mean(f_metrics_res, axis=2)
+            all_metrics = np.nanmean(j_metrics_res, axis=2) if 'J' in metric else np.mean(f_metrics_res, axis=2)
         row_ind, col_ind = linear_sum_assignment(-all_metrics)
         return j_metrics_res[row_ind, col_ind, :], f_metrics_res[row_ind, col_ind, :]
 
