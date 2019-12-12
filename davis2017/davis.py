@@ -11,7 +11,7 @@ class DAVIS(object):
     DATASET_WEB = 'https://davischallenge.org/davis2017/code.html'
     VOID_LABEL = 255
 
-    def __init__(self, root, task='unsupervised', subset='val', sequences='all', resolution='480p', codalab=False):
+    def __init__(self, root, task='supervised', subset='val', sequences='all', resolution='480p', codalab=False):
         """
         Class to read the DAVIS dataset
         :param root: Path to the DAVIS folder that contains JPEGImages, Annotations, etc. folders.

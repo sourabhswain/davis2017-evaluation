@@ -12,7 +12,7 @@ from scipy.optimize import linear_sum_assignment
 
 
 class DAVISEvaluation(object):
-    def __init__(self, davis_root, task, gt_set, sequences='all', codalab=False):
+    def __init__(self, dataset_root, task, gt_set, sequences='all', codalab=False):
         """
         Class to evaluate DAVIS sequences from a certain set and for a certain task
         :param davis_root: Path to the DAVIS folder that contains JPEGImages, Annotations, etc. folders.
@@ -20,7 +20,7 @@ class DAVISEvaluation(object):
         :param gt_set: Set to compute the evaluation
         :param sequences: Sequences to consider for the evaluation, 'all' to use all the sequences in a set.
         """
-        self.davis_root = davis_root
+        self.davis_root = dataset_root
         self.task = task
         self.dataset = DAVIS(root=davis_root, task=task, subset=gt_set, sequences=sequences, codalab=codalab)
 

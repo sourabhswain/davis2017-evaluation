@@ -8,15 +8,15 @@ import numpy as np
 import pandas as pd
 from davis2017.evaluation import DAVISEvaluation
 
-default_davis_path = '/path/to/the/folder/DAVIS'
+default_dataset_path = '/path/to/the/folder/DAVIS'
 
 time_start = time()
 parser = argparse.ArgumentParser()
-parser.add_argument('--davis_path', type=str, help='Path to the DAVIS folder containing the JPEGImages, Annotations, '
+parser.add_argument('--dataset_path', type=str, help='Path to the dataset folder containing the JPEGImages, Annotations, '
                                                    'ImageSets, Annotations_unsupervised folders',
-                    required=False, default=default_davis_path)
-parser.add_argument('--set', type=str, help='Subset to evaluate the results', default='val')
-parser.add_argument('--task', type=str, help='Task to evaluate the results', default='unsupervised',
+                    required=False, default=default_dataset_path)
+parser.add_argument('--set', type=str, help='Subset to evaluate the results on', default='val')
+parser.add_argument('--task', type=str, help='Task to evaluate the results on', default='supervised',
                     choices=['semi-supervised', 'unsupervised'])
 parser.add_argument('--results_path', type=str, help='Path to the folder containing the sequences folders',
                     required=True)
@@ -34,7 +34,7 @@ if os.path.exists(csv_name_global_path) and os.path.exists(csv_name_per_sequence
 else:
     print(f'Evaluating sequences for the {args.task} task...')
     # Create dataset and evaluate
-    dataset_eval = DAVISEvaluation(davis_root=args.davis_path, task=args.task, gt_set=args.set)
+    dataset_eval = DAVISEvaluation(davis_root=args.dataset_path, task=args.task, gt_set=args.set)
     metrics_res = dataset_eval.evaluate(args.results_path)
     J, F = metrics_res['J'], metrics_res['F']
 

@@ -5,8 +5,9 @@ import sys
 
 
 class Results(object):
-    def __init__(self, root_dir):
+    def __init__(self, root_dir, dataset):
         self.root_dir = root_dir
+        self.dataset = dataset
 
     def _read_mask(self, sequence, frame_id):
         try:
